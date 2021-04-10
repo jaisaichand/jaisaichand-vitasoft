@@ -1,0 +1,124 @@
+<div class="mainScreenoneContainer">
+    <!-- everything this component contains is wrapped in here -->
+
+    <div class="headermain">
+        <!-- header component -->
+        <app-header></app-header>
+    </div>
+
+    <div class="mainbody">
+        <!-- mainbody is the div in which both sign in and sign up are placed side by side   -->
+
+        <div class="row marginYAxis">
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="loginContainer allCenter flex-column text-left float-right pr-3">
+                    <!-- main container of the login -->
+                    <p class="mainHeading bigText w-100">SIGN IN</p>
+
+                    <div class="rowContainer w-100">
+
+                        <div class="w-100">
+                            <p class="normalText">Account Type</p>
+
+                            <div class="optionContainer">
+                                <div (click)="selectTab('client')" [class.selectedItem]="selectedTab=='client'"
+                                    class="optionitem allCenter  cursorPointer">
+
+                                    <span>
+                                        <small>Client</small>
+
+                                    </span>
+                                    <span class="tickContainer allCenter p-1">
+                                        <img *ngIf="selectedTab=='client'" src="assets/checked.svg" alt="" class="tick">
+                                    </span>
+                                </div>
+
+                                <div (click)="selectTab('provider')" [class.selectedItem]="selectedTab=='provider'"
+                                    class="optionitem allCenter cursorPointer">
+                                    <span><small>Provider</small></span>
+                                    <span class="tickContainer allCenter p-1">
+                                        <img *ngIf="selectedTab=='provider'" src="assets/checked.svg" alt=""
+                                            class="tick">
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="rowContainer w-100">
+
+
+                        <div class="w-100 mt-3">
+                            <p class="m-0 commonText">Email Address</p>
+                            <input name="emaill" type="text" [(ngModel)]="email" class="textInput">
+
+                        </div>
+
+                        <div class="w-100 mt-3">
+                            <p class="m-0 commonText">Password</p>
+                            <input name="passwordd" autocomplete="on" type="password" autocomplete="on"
+                                [(ngModel)]="password" class="textInput">
+
+                        </div>
+
+
+                        <div class="w-100 d-flex justify-content-between mt-3">
+                            <span>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="" id=""
+                                            value="checkedValue" checked>
+                                        <small class="text-muted">Keep me Signed in</small>
+                                    </label>
+                                </div>
+                            </span>
+
+                            <span><small class="text-muted">Forgot your password?</small></span>
+                        </div>
+
+                        <div class="w-100 btnContainer mt-3">
+                            <button (click)="loginToApp()" [class.enabledBtn]="email!=''&&password!=''"
+                                class="btn btn-block disabledBtn">Sign
+                                In</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="signupContainer allCenter flex-column text-left float-left h-100">
+                    <!-- main container of the login -->
+
+                    <p class="mainHeading bigText w-100">DON'T HAVE AN ACCOUNT?</p>
+
+                    <p class="commonText">Create an account to check out faster and use our convenient site features</p>
+
+                    <div class="rowContainer w-100">
+
+                        <div class="w-100 createAccountBtn cursorPointer allCenter " routerLink="/createaccount">
+                            <span class=" colorBlue ">Create Account</span>
+                        </div>
+
+                        <div class="imageContainer w-100 h-100 allCenter">
+                            <img src="assets/account.svg" class="mainImage" alt="">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="footerContainer allCenter">
+            <h3 class="footerTestMain m-0 text-white">Footer</h3>
+        </div>
+
+    </div>
+</div>

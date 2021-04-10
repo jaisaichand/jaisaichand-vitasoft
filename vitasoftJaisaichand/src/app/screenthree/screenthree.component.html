@@ -1,0 +1,303 @@
+<div class="screenThreeContainer">
+    <!-- everything this component contains is wrapped in here -->
+
+    <div class="headermain mb-3">
+        <!-- header component -->
+        <app-header></app-header>
+    </div>
+
+    <div class="w-100 allCenter">
+        <div class="bodyCore w-50">
+            <div class="headingContainer borderBottom">
+                <h3>Create Account</h3>
+                <p><small class="text-muted smallTxt">Follow below steps to create an account in Z-Shop</small></p>
+            </div>
+            <form [formGroup]="finalForm">
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-50 mr-1">
+                        <p class="required">First name</p>
+                        <input formControlName="firstname" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.firstname.valid && (finalForm.controls.firstname.dirty ||finalForm.controls.firstname.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+
+                    <div class="formGroupContainer w-50 ml-1">
+                        <p class="required">Last name</p>
+                        <input formControlName="lastname" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.lastname.valid && (finalForm.controls.lastname.dirty ||finalForm.controls.lastname.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- for NPI number input -->
+                <div class="w-100 d-flex align-items-center mt-4" *ngIf="variant=='us'">
+                    <div class="formGroupContainer w-100 ">
+                        <p class="required">NPI number (Valid NPI number is required for creating US accounts)</p>
+                        <input formControlName="npiNumber" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.npiNumber.valid && (finalForm.controls.npiNumber.dirty ||finalForm.controls.npiNumber.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- for credentials input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-100 ">
+                        <p class="required">Credentials</p>
+
+
+
+                        <select formControlName="credentials">
+                            <option value="" disabled selected>Select your option</option>
+                            <option *ngFor="let c of options" [value]="c">{{c}}</option>
+
+
+                        </select>
+
+                        <!-- <div
+                            *ngIf="!finalForm.controls.credentials.valid && (finalForm.controls.credentials.dirty ||finalForm.controls.credentials.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div> -->
+
+                        <!-- <select name="" id="" class="textInput">
+                        <option value="P">ACNP</option>
+                        <option value="">ANP</option>
+                        <option value="">CCN</option>
+                        <option value="">HNP</option>
+                        <option value="">LNP</option>
+                        <option value="">RPA</option>
+                    </select> -->
+                        <!-- <input type="text" class="textInput"> -->
+                    </div>
+                </div>
+
+                <!-- for other  input -->
+                <div class="w-100 d-flex align-items-center mt-4" *ngIf="variant=='others'">
+                    <div class="formGroupContainer w-100 ">
+                        <p class="required">If you selected "Other", Please fill out your answer here: </p>
+                        <input formControlName="otheranswer" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.otheranswer.valid && (finalForm.controls.otheranswer.dirty ||finalForm.controls.otheranswer.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- for use practice id -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-100 ">
+                        <p class="">Use practice ID</p>
+                        <div class="w-50 justify-content-between d-flex align-items-center">
+                            <div class="optioncontainer d-flex justify-content-between align-items-center">
+                                <span (click)="yes.click()" class="blockselect allCenter">
+                                    <span *ngIf="finalForm.controls.practiceId.value=='yes'"
+                                        class="blockselectchild"></span>
+                                </span>
+                                <span class="optionContainerText">Yes</span>
+                            </div>
+                            <div class="optioncontainer d-flex justify-content-between align-items-center">
+                                <span (click)="no.click()" class="blockselect">
+                                    <span *ngIf="finalForm.controls.practiceId.value=='no'"
+                                        class="blockselectchild"></span>
+                                </span>
+                                <span class="optionContainerText">No</span>
+                            </div>
+                        </div>
+
+                        <label class="colmn radio makeinvisible" style="font-size: 17px;">
+                            <input #yes formControlName="practiceId" type="radio" value="yes" name="practiceId">
+                            yes
+                            <span class="checkmark"></span>
+                        </label>
+
+                        <label class="colmn radio makeinvisible" style="font-size: 17px;margin-left: 56px">
+                            <input #no formControlName="practiceId" type="radio" value="no" name="practiceId">
+                            no
+                            <span class="checkmark"></span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- for practice name input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-100 ">
+                        <p class="required">Practice Name</p>
+                        <input formControlName="practicename" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.practicename.valid && (finalForm.controls.practicename.dirty ||finalForm.controls.practicename.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- for address and city input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-75 mr-3 ">
+                        <p class="required">Address</p>
+                        <input formControlName="address" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.address.valid && (finalForm.controls.address.dirty ||finalForm.controls.address.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+
+                    <div class="formGroupContainer w-25 ">
+                        <p class="required">City</p>
+                        <input formControlName="city" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.city.valid && (finalForm.controls.city.dirty ||finalForm.controls.city.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- for state,zipcode,country input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+
+
+                    <div class="formGroupContainer w-25 mr-1">
+                        <p class="required">State</p>
+                        <input formControlName="state" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.state.valid && (finalForm.controls.state.dirty ||finalForm.controls.state.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+
+                    <div class="formGroupContainer w-25 mr-1">
+                        <p class="required">Zip code</p>
+                        <input formControlName="zipcode" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.zipcode.valid && (finalForm.controls.zipcode.dirty ||finalForm.controls.zipcode.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+
+                    <div class="formGroupContainer w-50 ">
+                        <p class="required">Country</p>
+                        <input formControlName="country" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.country.valid && (finalForm.controls.country.dirty ||finalForm.controls.country.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- for phone,fax input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-50 mr-1">
+                        <p class="required">Phone number</p>
+                        <input formControlName="phonenumber" type="text" class="textInput" placeholder="###-###-####">
+                        <div
+                            *ngIf="!finalForm.controls.phonenumber.valid && (finalForm.controls.phonenumber.dirty ||finalForm.controls.phonenumber.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+
+                    <div class="formGroupContainer w-50 ml-1">
+                        <p class="required">Fax number</p>
+                        <input formControlName="faxnumber" type="text" class="textInput" placeholder="Enter name">
+                        <div
+                            *ngIf="!finalForm.controls.faxnumber.valid && (finalForm.controls.faxnumber.dirty ||finalForm.controls.faxnumber.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- for website input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-100 ">
+                        <p class="required">Website</p>
+                        <input formControlName="website" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.website.valid && (finalForm.controls.website.dirty ||finalForm.controls.website.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- for Email input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-100 ">
+                        <p class="required">Email Address</p>
+                        <input formControlName="emailaddress" type="text" class="textInput">
+                        <div
+                            *ngIf="!finalForm.controls.emailaddress.valid && (finalForm.controls.emailaddress.dirty ||finalForm.controls.emailaddress.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- for password input -->
+                <div class="w-100 d-flex align-items-center mt-4">
+                    <div class="formGroupContainer w-50 mr-1">
+                        <p class="required">Create Password</p>
+                        <input autocomplete="on" formControlName="password" type="password" class="textInput"
+                            placeholder="Password" (input)="passwordsChanged()" #password>
+                        <div
+                            *ngIf="!finalForm.controls.password.valid && (finalForm.controls.password.dirty ||finalForm.controls.password.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+
+                        </div>
+                        <small *ngIf="passwordError" class="errorText">Password and confirm password didnt match</small>
+                    </div>
+
+                    <div class="formGroupContainer w-50 ml-1">
+                        <p class="required">Confirm Password</p>
+                        <input autocomplete="on" formControlName="confirmpassword" type="password" class="textInput"
+                            placeholder="Confirm Password" (input)="passwordsChanged()" #confpassword>
+                        <div
+                            *ngIf="!finalForm.controls.confirmpassword.valid && (finalForm.controls.confirmpassword.dirty ||finalForm.controls.confirmpassword.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                        </div>
+                        <small *ngIf="passwordError" class="errorText">Password and confirm password didnt match</small>
+                    </div>
+                </div>
+
+                <div class="w-100 d-flex align-items-center mt-4 mb-5 borderBottom" style="flex-direction: column;">
+
+                    <p class="w-100 required">How did you hear about Example Company?</p>
+
+
+                    <select formControlName="hear">
+
+                        <option *ngFor="let c of hearOptions" [value]="c">{{c}}</option>
+
+                    </select>
+
+                    <!-- <div
+                            *ngIf="!finalForm.controls.hear.valid && (finalForm.controls.hear.dirty ||finalForm.controls.hear.touched)">
+                            <small class="errorText">This is a mandatory feild, please enter valid input</small>
+                       
+                </div>  -->
+
+                </div>
+            </form>
+            <div class="w-100">
+                By clicking on this button, you agree to <span class="linkText" routerLink="/terms-and-conditions">Terms
+                    and conditions</span>
+            </div>
+
+            <div class="w-100">
+                <button class="createAccount allCenter " (click)="submitCreate(finalForm)">Create Account</button>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+</div>

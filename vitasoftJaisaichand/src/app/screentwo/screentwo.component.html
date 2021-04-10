@@ -1,0 +1,99 @@
+<div class="screenTwoContainer">
+    <!-- everything this component contains is wrapped in here -->
+
+    <div class="headermain mb-3">
+        <!-- header component -->
+        <app-header></app-header>
+    </div>
+
+    <div class="mainbody mt-5 allCenter pt-4">
+        <!-- mainbody is the div in which all contents are present   -->
+        <div class="signupContainer">
+            <div class="headingContainer">
+                <h3>Create Account</h3>
+                <p><small class="text-muted smallTxt">Follow below steps to create an account in Z-Shop</small></p>
+            </div>
+
+            <div class="corebody mb-5">
+
+                <div class="rowContainer w-100 pt-3">
+
+                    <div class="w-100 mt-3">
+                        <p class="commonText colorgrey required">Please selct your account type </p>
+
+                        <div class="optionContainer">
+                            <div class="optionitem cursorPointer allCenter "
+                                (click)="clickedToChangeClientOrProvider('Client')"
+                                [class.selectedItem]="clientOrProvider=='Client'">
+
+                                <span>
+                                    <small>Client</small>
+
+                                </span>
+                                <span class="tickContainer allCenter p-1">
+                                    <img *ngIf="clientOrProvider=='Client'" src="assets/checked.svg" alt=""
+                                        class="tick">
+                                </span>
+                            </div>
+
+                            <div class="optionitem cursorPointer allCenter "
+                                (click)="clickedToChangeClientOrProvider('Provider')"
+                                [class.selectedItem]="clientOrProvider=='Provider'">
+                                <span><small>Provider</small></span>
+                                <span class="tickContainer allCenter p-1">
+                                    <img *ngIf="clientOrProvider=='Provider'" src="assets/checked.svg" alt=""
+                                        class="tick">
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="rowContainer">
+                    <div class="w-100">
+                        <p class="mt-3 required">Are you from US?</p>
+                        <div class="w-50 justify-content-between d-flex align-items-center">
+                            <div (click)="changedIsUs(true)"
+                                class="optioncontainer cursorPointer d-flex justify-content-between align-items-center">
+                                <span class="blockselect allCenter">
+                                    <span *ngIf="isFromUs" class="blockselectchild"></span>
+                                </span>
+                                <span class="optionContainerText">Yes</span>
+                            </div>
+                            <div (click)="changedIsUs(false)"
+                                class="optioncontainer cursorPointer d-flex justify-content-between align-items-center">
+                                <span class="blockselect">
+                                    <span *ngIf="!isFromUs" class="blockselectchild"></span>
+                                </span>
+                                <span class="optionContainerText">No</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-100" *ngIf="isFromUs&&clientOrProvider=='Provider'">
+                        <p class="commonText m-0 mb-2 mt-4">NPI Number (Valid NPI is required for creating US accounts)
+                        </p>
+
+                        <div class="w-100">
+                            <div class="inputContainer d-flex align-items-center">
+                                <input type="number" minlength="10" name="npiinput" [(ngModel)]="npiNumber"
+                                    maxlength="10" class="NPIinput textInput">
+                                <span (click)="checkNpiNumber()" class="checkBtn cursorPointer allCenter">Check</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-100 btnContainer mt-3">
+                        <button (click)="checkNpiNumber()" class="btn btn-block btn-primary">Continue</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
